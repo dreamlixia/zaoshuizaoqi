@@ -8,7 +8,8 @@ This is the README for your extension "zaoshuizaoqi".
 
 ## Features
 
-Holiday wishes.
+- Holiday wishes.
+- Holiday wishes.
 
 ## Installation
 
