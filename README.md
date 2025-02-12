@@ -28,5 +28,6 @@ Holiday wishes.
 If you would like to contribute, please fork the repository and submit a pull request.
 
 ## License
+This extension is licensed under the xxxx.
 
 **Enjoy!**
