@@ -2,8 +2,6 @@
 
 Hello "zaoshuizaoqi". 
 
-<!-- ![](vsce package --baseContentUrl "git@github.com:dreamlixia/zaoshuizaoqi.git/blob/master" --baseImagesUrl "git@github.com:dreamlixia/zaoshuizaoqi.git/raw/master") -->
-
 ### Version
 
 ![Static Badge](https://img.shields.io/badge/sayHi-0.0.1-blue?labelColor=orange)
