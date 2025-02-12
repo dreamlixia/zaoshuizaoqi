@@ -6,6 +6,7 @@ This is the README for your extension "zaoshuizaoqi".
 
 Holiday wishes.
 
-### 0.0.1
+### Version
+![Static Badge](https://img.shields.io/badge/sayHi-0.0.1-blue?labelColor=orange)
 
 **Enjoy!**
