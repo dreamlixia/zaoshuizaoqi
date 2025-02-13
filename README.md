@@ -1,14 +1,19 @@
 # zaoshuizaoqi
 
-Hello "zaoshuizaoqi". 
+Hello "ZaoShuiZaoQi". 
+
+Command: `ZaoShuiZaoQi`
 
 ### Version
 
-![Static Badge](https://img.shields.io/badge/sayHi-0.0.1-blue?labelColor=orange)
+![Static Badge](https://img.shields.io/badge/zaoshuizaoqi-0.0.1-blue?labelColor=orange)
+
+![Static Badge](https://img.shields.io/badge/zaoshuizaoqi-0.0.2-blue?labelColor=orange)
 
 ## Features
 
 - Holiday wishes.
+- Festival info.
 
 ## Installation
 
