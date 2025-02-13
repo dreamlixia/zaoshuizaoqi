@@ -28,6 +28,9 @@ Command: `ZaoShuiZaoQi`
 2. Press `Ctrl+Shift+P` to open the Command Palette.
 3. Type `Your Command` and select it from the list.
 
+## Preview
+<img src="./src/Images/festivalinfo.jpg" />
+
 ## Contributing
 
 If you would like to contribute, please fork the repository and submit a pull request.
