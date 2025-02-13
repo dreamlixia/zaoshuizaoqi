@@ -1,6 +1,8 @@
 配置
 <!-- ![](vsce package --baseContentUrl "git@github.com:dreamlixia/zaoshuizaoqi.git/blob/master" --baseImagesUrl "git@github.com:dreamlixia/zaoshuizaoqi.git/raw/master") -->
 
+vsce package patch --baseContentUrl https://github.com/dreamlixia/zaoshuizaoqi --baseImagesUrl https://github.com/dreamlixia/zaoshuizaoqi/raw/main
+
 天行数据API
 https://www.tianapi.com/console/
 账号：Lynsey
