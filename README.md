@@ -6,9 +6,7 @@ Command: `ZaoShuiZaoQi`
 
 ### Version
 
-![Static Badge](https://img.shields.io/badge/zaoshuizaoqi-0.0.1-blue?labelColor=orange)
-
-![Static Badge](https://img.shields.io/badge/zaoshuizaoqi-0.0.2-blue?labelColor=orange)
+![Static Badge](https://img.shields.io/badge/zaoshuizaoqi-0.0.3-blue?labelColor=orange)
 
 ## Features
 

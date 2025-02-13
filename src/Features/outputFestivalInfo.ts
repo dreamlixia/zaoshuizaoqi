@@ -20,8 +20,7 @@ const toastFestivalInfo = async () => {
     const yyyy = currentDate.getFullYear();
     const mm = ('0' + (currentDate.getMonth() + 1)).slice(-2);
     const dd = ('0' + currentDate.getDate()).slice(-2);
-    // const dateStr = `${yyyy}-${mm}-${dd}`;
-    const dateStr = `2025-02-12`;
+    const dateStr = `${yyyy}-${mm}-${dd}`;
 
     const apiKey = 'bbb14aaee65f2563d5a375adb1eb1b61';
 
