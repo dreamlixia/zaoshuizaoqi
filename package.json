@@ -7,10 +7,7 @@
   "engines": {
     "vscode": "^1.54.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:dreamlixia/zaoshuizaoqi.git"
-  },
+  "repository": {},
   "categories": [
     "Other"
   ],

@@ -8,6 +8,15 @@ vsce package patch --baseContentUrl https://github.com/dreamlixia/zaoshuizaoqi -
 vsce publish
 ```
 
+不在插件上/插件市场上显示代码仓库地址  
+- 去掉package.json的 repository 字段
+```json
+"repository": {
+    "type": "git",
+    "url": "git@github.com:dreamlixia/zaoshuizaoqi.git"
+}
+```
+
 天行数据API
 https://www.tianapi.com/console/
 账号：Lynsey
