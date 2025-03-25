@@ -27,6 +27,9 @@ const toastFestivalInfo = async () => {
     // 创建输出通道
     const output = vscode.window.createOutputChannel('Holiday Info');
 
+    // 查询全年法定节假日日期-休假tips
+    const theYear = new Date().getFullYear()?.toString();
+
     // 同时发起两个 API 请求，并等待它们都返回结果
     Promise.all([getLunarData(apiKey, dateStr), getJiejiariData(apiKey, dateStr)])
         .then(([lunarResult, jiejiariResult]) => {
@@ -57,12 +60,29 @@ const toastFestivalInfo = async () => {
                     output.appendLine(`${jiejiariResult?.rest ?? ''}`);
                 }
             }
+
+            // 全年法定节假日日期-休假tips
+            getJiejiariData(apiKey, theYear)
+                .then((res) => {
+                    if (res?.list?.length) {
+                        output.appendLine(`全年休假建议：`);
+                        res?.list?.forEach((item: any) => {
+                            output.appendLine(`${item?.holiday ?? item?.vacation}(${item?.name})：${item?.tip} - 休假建议：${item?.rest}`);
+                        });
+                    }
+                })
+                .catch((err) => {
+                    vscode.window.showErrorMessage(`获取全年休假建议失败：${err.message}`);
+                });
+
             // 最后统一显示输出通道
             output.show();
         })
         .catch((err) => {
             vscode.window.showErrorMessage(`请求数据错误：${err.message}`);
         });
+
+    
 };
 
 export { toastFestivalInfo };
