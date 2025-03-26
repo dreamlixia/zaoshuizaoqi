@@ -1,7 +1,8 @@
 {
-	"compilerOptions": {
-		"module": "Node16",
+	"compilerOptions": {		
+		"module": "node16",
 		"target": "ES2022",
+		// "moduleResolution": "nodenext",
 		"lib": [
 			"ES2022"
 		],

@@ -60,12 +60,13 @@ const toastFestivalInfo = async () => {
                     output.appendLine(`${jiejiariResult?.rest ?? ''}`);
                 }
             }
-
+        })
+        .then(() => {
             // 全年法定节假日日期-休假tips
             getJiejiariData(apiKey, theYear)
                 .then((res) => {
                     if (res?.result?.list?.length) {
-                        output.appendLine(`全年休假建议：`);
+                        output.appendLine(`全年休假建议：--${JSON.stringify(res?.result?.list)}`);
                         res?.result?.list?.forEach((item: any) => {
                             output.appendLine(`${item?.holiday ?? item?.vacation}(${item?.name})：${item?.tip} - 休假建议：${item?.rest}`);
                         });
@@ -74,7 +75,8 @@ const toastFestivalInfo = async () => {
                 .catch((err) => {
                     vscode.window.showErrorMessage(`获取全年休假建议失败：${err.message}`);
                 });
-
+        })
+        .then(() => {
             // 最后统一显示输出通道
             output.show();
         })
