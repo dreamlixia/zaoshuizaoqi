@@ -66,10 +66,10 @@ const toastFestivalInfo = async () => {
             await getJiejiariData(apiKey, theYear, { type:'1', mode:'1' })
                 .then((res: any) => {
                     if (res?.list?.length > 0) {
+                        output.appendLine(`全年休假建议: `);
                         res?.list?.forEach((item: any) => {
-                            output.appendLine(`全年休假建议: `);
                             output.appendLine(`${item?.holiday ?? item?.vacation}(${item?.name})`);
-                            output.appendLine(`- 休假技巧: ${item?.tip}[${item?.rest}]`);
+                            output.appendLine(`- ⛱️ ：${item?.tip}[${item?.rest}]`);
                         });
                         output.show();
                     } else {
