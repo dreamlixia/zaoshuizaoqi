@@ -38,10 +38,10 @@ const toastFestivalInfo = async () => {
 
             // 处理农历数据返回值（例如：农历节日、宜忌、神位等信息）
             if (lunarResult) {
-                output.appendLine(`今天是${lunarResult?.gregoriandate ?? ''}${lunarResult?.festival ? `，${lunarResult?.festival}，祝你节日快乐！❤️` : ''}`);
+                output.appendLine(`今天是 \x1b[4m\x1b[35m${lunarResult?.gregoriandate ?? ''}\x1b[0m${lunarResult?.festival ? `，${lunarResult?.festival}，祝你节日快乐！❤️` : ''}`);
                 output.appendLine(`农历：${lunarResult.lubarmonth}${lunarResult.lunarday}${lunarResult.jieqi ?? ''}${lunarResult?.lunar_festival ? `·${lunarResult?.lunar_festival}` : ''}`);
-                output.appendLine(`宜：${lunarResult.fitness}`);
-                output.appendLine(`忌：${lunarResult.taboo}`);
+                output.appendLine(`\x1b[32m宜：${lunarResult.fitness}\x1b[0m`);
+                output.appendLine(`\x1b[31m忌：${lunarResult.taboo}\x1b[0m`);
                 output.appendLine(`神位：${lunarResult.shenwei}`);
 
                 if (lunarResult?.lunar_festival) {
@@ -56,8 +56,8 @@ const toastFestivalInfo = async () => {
                 // 假设 jiejiariResult.list 是数组，取第一个数据项
                 const jiejiariData = jiejiariResult?.list?.[0];
                 if (jiejiariData) {
-                    output.appendLine(`${jiejiariResult?.tip ?? ''}`);
-                    output.appendLine(`${jiejiariResult?.rest ?? ''}`);
+                    output.appendLine(`${jiejiariResult?.tip ?? null}`);
+                    output.appendLine(`${jiejiariResult?.rest ?? null}`);
                 }
             }
         })
@@ -65,11 +65,11 @@ const toastFestivalInfo = async () => {
             // 全年法定节假日日期-休假tips
             await getJiejiariData(apiKey, theYear, { type:'1', mode:'1' })
                 .then((res: any) => {
-                    vscode.window.showInformationMessage(JSON.stringify(res));
                     if (res?.list?.length > 0) {
                         res?.list?.forEach((item: any) => {
-                            output.appendLine(`${item?.holiday ?? item?.vacation}(${item?.name})`);
-                            output.appendLine(`- 休假建议：${item?.tip}[${item?.rest}]`);
+                            output.appendLine(`\x1b[1m全年休假建议: \x1b[0m`);
+                            output.appendLine(`\x1b[1m${item?.holiday ?? item?.vacation}(${item?.name})\x1b[0m`);
+                            output.appendLine(`- 休假技巧: ${item?.tip}\x1b[36m[${item?.rest}]\x1b[0m`);
                         });
                         output.show();
                     } else {
