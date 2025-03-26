@@ -104,14 +104,15 @@ export function getLunarData(apiKey: string, dateStr: string): Promise<any> {
     }
     }
 */
-export function getJiejiariData(apiKey: string, dateStr: string): Promise<any> {
+export function getJiejiariData(apiKey: string, dateStr: string, otherParams?: any): Promise<any> {
     return new Promise((resolve, reject) => {
         request.post({
             url: 'https://apis.tianapi.com/jiejiari/index',
             form: {
                 key: apiKey,
                 date: dateStr,
-                type: 0
+                type: 0,
+                ...otherParams,
             }
         }, (err: any, _response: any, body: any) => {
             if (err) {

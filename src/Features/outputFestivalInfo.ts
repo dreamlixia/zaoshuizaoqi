@@ -63,7 +63,7 @@ const toastFestivalInfo = async () => {
         })
         .then(() => {
             // 全年法定节假日日期-休假tips
-            () => getJiejiariData(apiKey, theYear)
+            () => getJiejiariData(apiKey, theYear, { type:'1', mode:'1' })
                 .then((res: any) => {
                     vscode.window.showInformationMessage(JSON.stringify(res));
                     if (res?.result?.list?.length) {
