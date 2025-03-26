@@ -67,8 +67,7 @@ const toastFestivalInfo = async () => {
                 .then((res: any) => {
                     vscode.window.showInformationMessage(JSON.stringify(res));
                     if (res?.list?.length > 0) {
-                        output.appendLine(`全年休假建议：**${JSON.stringify(res?.list)}`);
-                        res?.result?.list?.forEach((item: any) => {
+                        res?.list?.forEach((item: any) => {
                             output.appendLine(`${item?.holiday ?? item?.vacation}(${item?.name})`);
                             output.appendLine(`- 休假建议：${item?.tip}[${item?.rest}]`);
                         });
