@@ -63,12 +63,14 @@ const toastFestivalInfo = async () => {
         })
         .then(() => {
             // 全年法定节假日日期-休假tips
-            getJiejiariData(apiKey, theYear)
-                .then((res) => {
+            () => getJiejiariData(apiKey, theYear)
+                .then((res: any) => {
+                    vscode.window.showInformationMessage(JSON.stringify(res));
                     if (res?.result?.list?.length) {
                         output.appendLine(`全年休假建议：--${JSON.stringify(res?.result?.list)}`);
-                        res?.result?.list?.forEach((item: any) => {
-                            output.appendLine(`${item?.holiday ?? item?.vacation}(${item?.name})：${item?.tip} - 休假建议：${item?.rest}`);
+                        res?.result?.list?.map((item: any) => {
+                            console.log(item);
+                            return output.appendLine(`${item?.holiday ?? item?.vacation}(${item?.name})：${item?.tip} - 休假建议：${item?.rest}`);
                         });
                     }
                 })
