@@ -7,3 +7,7 @@ All notable changes to the "zaoshuizaoqi" extension will be documented in this f
 ## [Unreleased]
 
 - Initial release 0.0.1
+
+## [1.0.0]
+
+- 增加了全年休假技巧提示
