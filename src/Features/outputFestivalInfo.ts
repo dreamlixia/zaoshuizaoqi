@@ -66,16 +66,11 @@ const toastFestivalInfo = async () => {
             getJiejiariData(apiKey, theYear, { type:'1', mode:'1' })
                 .then((res: any) => {
                     vscode.window.showInformationMessage(JSON.stringify(res));
-                    if (res?.result?.list?.length) {
-                        output.appendLine(`全年休假建议：--${JSON.stringify(res?.result?.list)}`);
-                        res?.result?.list?.map((item: any) => {
-                            console.log(item);
-                            return output.appendLine(`${item?.holiday ?? item?.vacation}(${item?.name})：${item?.tip} - 休假建议：${item?.rest}`);
-                        });
-
-                        output.appendLine(`全年休假建议：**${JSON.stringify(res?.result?.list)}`);
+                    if (res?.list?.length) {
+                        output.appendLine(`全年休假建议：**${JSON.stringify(res?.list)}`);
                         res?.result?.list?.forEach((item: any) => {
-                            output.appendLine(`${item?.holiday ?? item?.vacation}(${item?.name})：${item?.tip} - 休假建议：${item?.rest}`);
+                            output.appendLine(`${item?.holiday ?? item?.vacation}(${item?.name})`);
+                            output.appendLine(`- 休假建议：${item?.tip}[${item?.rest}]`);
                         });
                     }
                 })
