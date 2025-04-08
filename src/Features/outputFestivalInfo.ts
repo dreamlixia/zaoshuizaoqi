@@ -45,10 +45,10 @@ const toastFestivalInfo = async () => {
                 output.appendLine(`神位：${lunarResult.shenwei}`);
 
                 if (lunarResult?.lunar_festival) {
-                    vscode.window.showInformationMessage(`Hello ${username}，祝你${lunarResult?.lunar_festival}快乐！❤️`)
+                    vscode.window.showInformationMessage(`Hello ${username}，祝你${lunarResult?.lunar_festival}快乐！❤️`);
                 }
                 if (lunarResult?.festival) {
-                    vscode.window.showInformationMessage(`Hello ${username}，祝你${lunarResult?.festival}快乐！❤️`)
+                    vscode.window.showInformationMessage(`Hello ${username}，祝你${lunarResult?.festival}快乐！❤️`);
                 }
             }
             // 处理节假日数据返回值（例如：提示、休息、调休信息）
