@@ -104,13 +104,22 @@ export function getLunarData(apiKey: string, dateStr: string): Promise<any> {
     }
     }
 */
-export function getJiejiariData(apiKey: string, dateStr: string, otherParams?: any): Promise<any> {
+
+/**
+ * 查询全年法定节假日日期-休假tips
+ * @param apiKey 天行数据 API 密钥
+ * @param yyyy 年份
+ * @param mm 月份
+ * @param otherParams 其他参数
+ * @returns 
+ */
+export function getJiejiariData(apiKey: string, yyyy: string, otherParams?: any): Promise<any> {
     return new Promise((resolve, reject) => {
         request.post({
             url: 'https://apis.tianapi.com/jiejiari/index',
             form: {
                 key: apiKey,
-                date: dateStr,
+                date: yyyy,
                 type: 0,
                 ...otherParams,
             }

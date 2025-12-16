@@ -5,6 +5,20 @@ import * as vscode from 'vscode';
 import { getLunarData, getJiejiariData } from '../Utils/api';
 import { getGitUsername } from '../Utils/util';
 
+// 辅助函数
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+const fetchWithRetry = async (fetchFn: () => Promise<any>, retries = 3, delayMs = 1000) => {
+    for (let i = 0; i < retries; i++) {
+        try {
+            return await fetchFn();
+        } catch (error) {
+            if (i === retries - 1) throw error;
+            await delay(delayMs * (i + 1)); // 递增延迟
+        }
+    }
+};
+
 const toastFestivalInfo = async () => {
     
     let username = '';
@@ -26,9 +40,6 @@ const toastFestivalInfo = async () => {
 
     // 创建输出通道
     const output = vscode.window.createOutputChannel('Holiday Info');
-
-    // 查询全年法定节假日日期-休假tips
-    const theYear = new Date().getFullYear()?.toString();
 
     // 同时发起两个 API 请求，并等待它们都返回结果
     Promise.all([getLunarData(apiKey, dateStr), getJiejiariData(apiKey, dateStr)])
@@ -62,23 +73,48 @@ const toastFestivalInfo = async () => {
             }
         })
         .then(async () => {
-            // 全年法定节假日日期-休假tips
-            await getJiejiariData(apiKey, theYear, { type:'1', mode:'1' })
-                .then((res: any) => {
-                    if (res?.list?.length > 0) {
-                        output.appendLine(`全年休假建议: `);
-                        res?.list?.forEach((item: any) => {
+            // 查询全年法定节假日日期-休假tips
+            const currentMonth = currentDate.getMonth() + 1; // 获取当前月份(0-11，所以需要+1)
+            
+            try {
+                // 当前年份的休假建议
+                const res = await fetchWithRetry(() => 
+                    getJiejiariData(apiKey, yyyy.toString(), { type:'1', mode:'1' })
+                );
+                
+                if (res?.list?.length > 0) {
+                    output.appendLine(`📅 【${yyyy}年休假建议】: `);
+                    res?.list?.forEach((item: any) => {
+                        output.appendLine(`${item?.holiday ?? item?.vacation}(${item?.name})`);
+                        output.appendLine(`- ⛱️ ：${item?.tip}[${item?.rest}]`);
+                    });
+                } else {
+                    vscode.window.showInformationMessage('tips error');
+                }
+                
+                // 如果当前月份大于等于10月，还需要显示下一年的休假建议
+                if (currentMonth >= 10) {
+                    // 添加延迟避免频率限制
+                    await delay(500);
+                    
+                    const nextYear = (yyyy + 1).toString();
+                    const nextRes = await fetchWithRetry(() => 
+                        getJiejiariData(apiKey, nextYear, { type:'1', mode:'1' })
+                    );
+                    
+                    if (nextRes?.list?.length > 0) {
+                        output.appendLine(`📅 【${nextYear}年休假建议】: `);
+                        nextRes?.list?.forEach((item: any) => {
                             output.appendLine(`${item?.holiday ?? item?.vacation}(${item?.name})`);
                             output.appendLine(`- ⛱️ ：${item?.tip}[${item?.rest}]`);
                         });
-                        output.show();
                     } else {
-                        vscode.window.showInformationMessage('tips error');
+                        vscode.window.showInformationMessage('next year tips error');
                     }
-                })
-                .catch((err) => {
-                    vscode.window.showErrorMessage(`获取全年休假建议失败：${err.message}`);
-                });
+                }
+            } catch (err) {
+                vscode.window.showErrorMessage(`获取休假建议失败`);
+            }
         })
         .then(() => {
             // 最后统一显示输出通道
@@ -87,7 +123,6 @@ const toastFestivalInfo = async () => {
         .catch((err) => {
             vscode.window.showErrorMessage(`请求数据错误：${err.message}`);
         });
-
     
 };
 
