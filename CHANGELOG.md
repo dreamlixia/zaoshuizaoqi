@@ -10,4 +10,8 @@ All notable changes to the "zaoshuizaoqi" extension will be documented in this f
 
 ## [1.0.0]
 
-- 增加了全年休假技巧提示
+- 增加了全年休假建议的提示
+
+## [1.0.3]
+
+- 增加了每年10月份开始显示下一年的休假建议
